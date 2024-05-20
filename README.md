@@ -68,4 +68,3 @@ Para atingir o objetivo do projeto irei utilizar tecnologias de frontend, backen
 - Localizar entidades usando ID
 - Ao registrar venda deve-se validar dados como estoque do produto e valor vendido, que deve ser o maior que o valor que o produto foi comprado.
 - Todos os campos de produto, exceto descrição, devem estar preenchidos em sua criação.
-
