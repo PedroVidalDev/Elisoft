@@ -13,6 +13,10 @@ class Service{
         return dataSource[this.nomeDoModel].findByPk(id);
     }
 
+    async pegaRegistroPorNome(nome){
+        return dataSource[this.nomeDoModel].findOne({where: {nome: nome}});
+    }
+
     async criaRegistro(dadosDoRegistro){
         return dataSource[this.nomeDoModel].create(dadosDoRegistro);
     }
