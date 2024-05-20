@@ -30,7 +30,7 @@ class Controller{
 
         await this.service.excluiRegistro(Number(id));
         return res.status(200).json({message: `ID deletado: ${id}`});
-        
+
     }
 }
 

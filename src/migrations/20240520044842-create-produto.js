@@ -21,6 +21,11 @@ module.exports = {
       quantidade: {
         type: Sequelize.INTEGER
       },
+      usuario_id: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {model: 'produtos', key: 'id'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
