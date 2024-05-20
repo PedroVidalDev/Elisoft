@@ -10,8 +10,6 @@ class ProdutoService extends Service{
         console.log(dadoExistente)
 
         if(dadoExistente == null && dadosDoRegistro.preco >= 0 && dadosDoRegistro.quantidade >= 0){
-            console.log("salvado")
-
             return await this.criaRegistro(dadosDoRegistro);
         }
 
