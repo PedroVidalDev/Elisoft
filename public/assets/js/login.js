@@ -15,6 +15,7 @@ form.addEventListener("submit", async (event) => {
     if(reqData != null){
         localStorage.setItem("token", reqData.token);
         alert(reqData.mensagem);
+        window.location.href = "/pages/dashboard.html";
     } else{
         alert("Erro no login. Favor verificar suas informacoes.");
     }
