@@ -5,7 +5,9 @@ const routes = require("./routes");
 const path = require("path");
 
 const caminhoAtual = __dirname;
-const diretorioPublico = path.join(caminhoAtual, "../..", "public");
+console.log(caminhoAtual)
+const diretorioPublico = path.join(caminhoAtual, "..", "public");
+console.log(diretorioPublico)
 
 const app = express();
 
