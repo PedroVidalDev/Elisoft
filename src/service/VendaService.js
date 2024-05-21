@@ -1,8 +1,9 @@
 const ProdutoService = require("./ProdutoService.js");
+const Service = require("./Service.js");
 
 const produtoService = new ProdutoService();
 
-class VendaService{
+class VendaService extends Service{
     constructor(){
         super("Venda");
     }
