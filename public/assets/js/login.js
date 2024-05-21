@@ -12,6 +12,11 @@ form.addEventListener("submit", async (event) => {
 
     const reqData = await request("login", "POST", header, jsonDados);
 
-    localStorage.setItem("token", reqData.token);
-    console.log(reqData);
+    if(reqData != null){
+        localStorage.setItem("token", reqData.token);
+        alert(reqData.mensagem);
+    } else{
+        alert("Erro no login. Favor verificar suas informacoes.");
+    }
+
 })
