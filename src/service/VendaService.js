@@ -12,9 +12,9 @@ class VendaService extends Service{
 
     async verificarRegistroVenda(dadosVenda, usuario){
         const produto = await produtoService.pegaUmRegistroPorId(dadosVenda.produtoId);
-        const usuario = await usuarioService.pegaRegistroPorEmail(usuario);
+        const usuarioEncontrado = await usuarioService.pegaRegistroPorEmail(usuario);
 
-        if(usuario == null){
+        if(usuarioEncontrado == null){
             console.log("Usuario nao existe");
         }
         
