@@ -21,7 +21,7 @@ class Controller{
         const dados = req.body;
 
         const novoRegistro = await this.service.criaRegistro(dados);
-        return res.status(200).json(novoRegistro);
+        return res.status(201).json(novoRegistro);
 
     }
 
@@ -29,7 +29,7 @@ class Controller{
         const { id } = req.params;
 
         await this.service.excluiRegistro(Number(id));
-        return res.status(200).json({message: `ID deletado: ${id}`});
+        return res.status(204);
 
     }
 }
