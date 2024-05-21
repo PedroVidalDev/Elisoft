@@ -21,7 +21,11 @@ class UsuarioController extends Controller{
 
         const novoLogin = await this.service.verificarLogin(dados);
 
-        return res.status(200).json(novoLogin)
+        if(novoLogin != null){
+            return res.status(200).json(novoLogin)
+        } else{
+            return res.status(401).json(novoLogin)
+        }
     }
 }
 
