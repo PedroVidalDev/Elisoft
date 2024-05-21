@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+:root{
+    --cor-fundo: #030003;
+    --cor-led: #FF9FF5;
+}
+
 html{
     font-size: 62.5px;
     font-family: "League Spartan", sans-serif;
