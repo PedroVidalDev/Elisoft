@@ -17,7 +17,11 @@ class UsuarioController extends Controller{
     }
 
     async logar(req, res){
+        const dados = req.body;
 
+        const novoLogin = await this.service.verificarLogin(dados);
+
+        return res.status(200).json(novoLogin)
     }
 }
 

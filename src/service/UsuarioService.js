@@ -1,6 +1,9 @@
 const Service = require("./Service.js");
 const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken")
 const dataSource = require("../models");
+
+const CHAVE = process.env.CHAVE;
 
 class UsuarioService extends Service{
     constructor(){
@@ -19,6 +22,15 @@ class UsuarioService extends Service{
                 senha: senhaCodificada
             })
         }
+    }
+
+    async verificarLogin(dados){
+        const usuarioExistente = await this.pegaRegistroPorEmail(dados.email);
+        if(!usuarioExistente || !await bcrypt.compare(dados.senha, usuarioExistente.senha)){
+            return null;
+        }
+        const token = jwt.sign({id: usuarioExistente.id, usuario: usuarioExistente.email}, CHAVE, {expiresIn: '3h'});
+        return token;
     }
 
     async pegaRegistroPorEmail(email){
