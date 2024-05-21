@@ -1,16 +1,23 @@
 const ProdutoService = require("./ProdutoService.js");
 const Service = require("./Service.js");
+const UsuarioService = require("./UsuarioService.js");
 
 const produtoService = new ProdutoService();
+const usuarioService = new UsuarioService();
 
 class VendaService extends Service{
     constructor(){
         super("Venda");
     }
 
-    async verificarRegistroVenda(dadosVenda){
-        const produto = produtoService.pegaUmRegistroPorId(dadosVenda.produtoId);
-        //const usuario = 
+    async verificarRegistroVenda(dadosVenda, usuario){
+        const produto = await produtoService.pegaUmRegistroPorId(dadosVenda.produtoId);
+        const usuario = await usuarioService.pegaRegistroPorEmail(usuario);
+
+        if(usuario == null){
+            console.log("Usuario nao existe");
+        }
+        
         if(produto == null){
             console.log("Produto nao existe");
         }
@@ -20,7 +27,7 @@ class VendaService extends Service{
         }
 
         else{
-            return await this.criaRegistro(dadosVenda);
+            return {mensagem: "Venda registrada com sucesso.", objeto: await this.criaRegistro(dadosVenda)};
         }
     }
 }

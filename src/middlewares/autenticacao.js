@@ -12,7 +12,7 @@ const autenticarToken = (req, res, next) => {
         if(err){
             return res.status(403);
         }
-        req.user = user;
+        req.user = usuario;
         next();
     })
 }

@@ -11,8 +11,8 @@ class ProdutoController extends Controller{
     async criarProduto(req, res){
         const dados = req.body;
 
-        const novoRegistro = await this.service.verificarRegistroProduto(dados);
-        return res.status(200).json(novoRegistro);
+        const novoRegistro = await this.service.verificarRegistroProduto(dados, req.user);
+        return res.status(201).json(novoRegistro);
 
     }
 
