@@ -13,7 +13,7 @@ class UsuarioController extends Controller{
 
         const novoRegistro = await this.service.verificarRegistroUsuario(dados);
     
-        return res.status(200).json(novoRegistro);
+        return res.status(201).json(novoRegistro);
     }
 
     async logar(req, res){

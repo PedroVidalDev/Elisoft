@@ -30,7 +30,7 @@ class UsuarioService extends Service{
             return null;
         }
         const token = jwt.sign({id: usuarioExistente.id, usuario: usuarioExistente.email}, CHAVE, {expiresIn: '3h'});
-        return token;
+        return {token};
     }
 
     async pegaRegistroPorEmail(email){
