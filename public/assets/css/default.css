@@ -26,3 +26,7 @@ body{
     justify-content: center;
     background-color: var(--cor-fundo);
 }
+
+input:focus-visible{
+    outline: none;
+}
