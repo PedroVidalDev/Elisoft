@@ -24,7 +24,7 @@ class UsuarioController extends Controller{
         if(novoLogin != null){
             return res.status(200).json(novoLogin)
         } else{
-            return res.status(401).json(novoLogin)
+            return res.status(400).json(novoLogin)
         }
     }
 }
