@@ -1,0 +1,61 @@
+h1{
+    font-size: 1.5rem;
+    color: white;
+}
+
+.container-login{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 70%;
+    background-color: white;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 20px var(--cor-led);
+}
+
+form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+    align-items: center;
+    justify-content: center;
+}
+
+.email-input, .senha-input{
+    width: 100%;
+    height: 30px;
+    font-size: 0.4rem;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.senha-input{
+    margin-top: 50px;
+}
+
+.submit{
+    width: 160px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 0.3rem;
+    border: 0;
+    box-shadow: 0px 0px 30px var(--cor-led);
+    margin-top: 50px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.submit:hover{
+    transform: scale(110%);
+    color: var(--cor-led);
+}
+
+.registrar-text{
+    font-size: 0.3rem;
+}
