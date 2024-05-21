@@ -13,7 +13,11 @@ class UsuarioController extends Controller{
 
         const novoRegistro = await this.service.verificarRegistroUsuario(dados);
     
-        return res.status(201).json(novoRegistro);
+        if(novoRegistro != null){
+            return res.status(201).json(novoRegistro);
+        } else{
+            return res.status(400);
+        } 
     }
 
     async logar(req, res){
@@ -22,9 +26,9 @@ class UsuarioController extends Controller{
         const novoLogin = await this.service.verificarLogin(dados);
 
         if(novoLogin != null){
-            return res.status(200).json(novoLogin)
+            return res.status(200).json(novoLogin);
         } else{
-            return res.status(400).json(novoLogin)
+            return res.status(400);
         }
     }
 }

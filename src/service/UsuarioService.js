@@ -16,12 +16,17 @@ class UsuarioService extends Service{
         if(usuarioExistente == null){
             const senhaCodificada = await bcrypt.hash(dados.senha, 10);
 
-            return await this.criaRegistro({
-                nome: dados.nome,
-                email: dados.email,
-                senha: senhaCodificada
-            })
+            return {
+                mensagem: "Usuario criado com sucesso!",
+                objeto: await this.criaRegistro({
+                    nome: dados.nome,
+                    email: dados.email,
+                    senha: senhaCodificada
+                })
+            } 
         }
+
+        return null;
     }
 
     async verificarLogin(dados){
