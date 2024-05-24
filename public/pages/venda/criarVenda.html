@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../../assets/css/default.css">
+    <link rel="stylesheet" href="./../../assets/css/menu.css">
+    <link rel="stylesheet" href="./../../assets/css/venda/criarVenda.css">
+    <link rel="stylesheet" href="./../../assets/css/tabela.css">
+    <title>Elisoft</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./../produto/produtos.html">Produtos</a></li>
+                <li><a href="./../dashboard.html">Home</a></li>
+                <li><a id="sair-botao">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="ajustar-criar">
+            <form id="form">
+                <input type="text" class="cliente-input" id="cliente-input" name="cliente" placeholder="Cliente" required>
+                <input type="number" class="produto-input" id="produto-input" name="produto" placeholder="Produto" required>
+                <input type="number" class="valor-input" id="valor-input" name="valor" placeholder="Valor" required>
+                <input type="submit" class="submit" id="submit" value="Criar">
+            </form>
+        </div>
+    </main>
+</body>
+</html>
