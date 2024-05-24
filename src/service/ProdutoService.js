@@ -3,13 +3,30 @@ const UsuarioService = require("./UsuarioService.js");
 
 const usuarioService = new UsuarioService();
 
+const dataSource = require("../models");
+
 class ProdutoService extends Service{
     constructor(){
         super("Produto");
     }
 
-    async atualizarEstoque(id){
-        
+    async atualizarEstoque(quantidadeAtualizada, id){
+        const listaDeRegistroAtualizado = dataSource[this.nomeDoModel].update(
+            {
+                quantidade: quantidadeAtualizada
+            }, 
+            {
+                where: {
+                    id: id
+                }
+            }
+        );
+
+        if(listaDeRegistroAtualizado[0] == 0){
+            return false;
+        } else{
+            return true;
+        }
     }
 
     async verificarRegistroProduto(dadosDoRegistro, usuario){

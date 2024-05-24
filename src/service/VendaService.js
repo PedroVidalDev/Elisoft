@@ -35,6 +35,7 @@ class VendaService extends Service{
         const usuarioEncontrado = await usuarioService.pegaUmRegistroPorId(usuario.id);
 
         console.log(produto)
+        console.log(usuarioEncontrado)
 
         if(usuarioEncontrado == null){
             console.log("Usuario nao existe");
@@ -52,6 +53,10 @@ class VendaService extends Service{
         }
 
         else{
+            await produtoService.atualizarEstoque(
+                produto.quantidade - 1,
+                produto.id);
+
             return {
                 mensagem: "Venda registrada com sucesso.", 
                 objeto: await this.criaRegistro({
