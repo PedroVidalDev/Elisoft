@@ -5,8 +5,8 @@ class Service{
         this.nomeDoModel = nomeDoModel;
     }
 
-    async pegaTodos(where = {}){
-        return dataSource[this.nomeDoModel].findAll({where: {...where}})
+    async pegaTodos(id){
+        return dataSource[this.nomeDoModel].findAll({where: {usuario_id: id}})
     }
 
     async pegaUmRegistroPorId(id){
