@@ -5,9 +5,29 @@ const UsuarioService = require("./UsuarioService.js");
 const produtoService = new ProdutoService();
 const usuarioService = new UsuarioService();
 
+const dataSource = require("../models");
+
 class VendaService extends Service{
     constructor(){
         super("Venda");
+    }
+
+    async pegaTodosPopulado(where = {}){
+        return dataSource[this.nomeDoModel].findAll(
+            {
+                where: {...where},
+                include: [
+                    {
+                        model: Produto,
+                        attributes: ['nome', 'descricao', 'preco', 'quantidade']
+                    },
+                    {
+                        model: Usuario,
+                        attributes: ['nome', 'email']
+                    }
+                ]
+            },
+        )
     }
 
     async verificarRegistroVenda(dadosVenda, usuario){
@@ -29,6 +49,11 @@ class VendaService extends Service{
         else{
             return {mensagem: "Venda registrada com sucesso.", objeto: await this.criaRegistro(dadosVenda)};
         }
+    }
+
+    async resgatarLucro(){
+        let vendas = await this.pegaTodosPopulado();
+        console.log(JSON.stringify(vendas))
     }
 }
 

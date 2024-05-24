@@ -15,6 +15,12 @@ class VendaController extends Controller{
 
         return res.status(201).json(novoRegistro);
     }
+
+    async resgatarFluxoDeCaixa(req, res){
+        const dados = await this.service.resgatarLucro();
+
+        return res.status(200).json(dados);
+    }
 }
 
 module.exports = VendaController;
