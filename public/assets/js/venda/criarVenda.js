@@ -16,6 +16,6 @@ form.addEventListener("submit", async (event) => {
         alert(reqData.mensagem);
         window.location.href = "/pages/venda/vendas.html";
     } else{
-        alert("Erro no login. Favor verificar suas informacoes.");
+        alert("Erro na criacao da venda. Por favor verificar os dados e tentar denovo.");
     }
 })
