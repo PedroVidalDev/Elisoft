@@ -20,9 +20,11 @@ module.exports = {
         references: {model: 'produtos', key: 'id'}
       },
       valor: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       cliente: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {

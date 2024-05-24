@@ -10,15 +10,18 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       nome: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       descricao: {
         type: Sequelize.STRING
       },
       preco: {
+        allowNull: false,
         type: Sequelize.FLOAT
       },
       quantidade: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       usuario_id: {
