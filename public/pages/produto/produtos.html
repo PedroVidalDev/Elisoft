@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../../assets/css/default.css">
+    <link rel="stylesheet" href="./../../assets/css/menu.css">
+    <link rel="stylesheet" href="./../../assets/css/vendas.css">
+    <link rel="stylesheet" href="./../../assets/css/tabela.css">
+    <title>Elisoft</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./../vendas/vendas.html">Vendas</a></li>
+                <li><a href="./../dashboard.html">Home</a></li>
+                <li><a id="sair-botao">Sair</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="ajustar-tabela">
+            <table>
+                <thead>
+                    <tr>
+                        <th> Nome </th>
+                        <th> Quantidade </th>
+                        <th> Preco </th>
+                        <th> Acao </th>
+                        <th> Vender </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td> Teste </td>
+                        <td> 32 </td>
+                        <td> 440 </td>
+                        <td> 
+                            <button class="botao-acao"> E </button>  
+                            <button class="botao-acao"> X </button>       
+                        </td>
+                        <td>
+                            <button class="botao-acao"> V </button> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button id="criar-botao" class="criar-botao"> + </button>
+    </main>
+</body>
+<script src="./../../assets/js/produto.js"></script>
+</html>
