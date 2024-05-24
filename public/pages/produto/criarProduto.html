@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./../../assets/css/default.css">
     <link rel="stylesheet" href="./../../assets/css/menu.css">
-    <link rel="stylesheet" href="./../../assets/css/produto/produto.css">
+    <link rel="stylesheet" href="./../../assets/css/produto/criarProduto.css">
     <link rel="stylesheet" href="./../../assets/css/tabela.css">
     <title>Elisoft</title>
 </head>
@@ -21,8 +21,16 @@
     </header>
 
     <main>
-        <div class="ajustar-tabela">
-            
+        <div class="ajustar-criar">
+            <form id="form">
+                <input type="text" class="nome-input" id="nome-input" name="nome" placeholder="Nome" required>
+                <div class="ajustar-form">
+                    <input type="number" class="preco-input" id="preco-input" name="preco" placeholder="Preco" required>
+                    <input type="number" class="quantidade-input" id="quantidade-input" name="quantidade" placeholder="Quantidade" required>    
+                </div>
+                <input type="text" class="descricao-input" id="descricao-input" name="descricao" placeholder="Descricao">
+                <input type="submit" class="submit" id="submit" value="Criar">
+            </form>
         </div>
     </main>
 </body>
