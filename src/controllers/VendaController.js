@@ -11,7 +11,7 @@ class VendaController extends Controller{
     async criarVenda(req, res){
         const dados = req.body;
 
-        const novoRegistro = await this.service.verificarRegistroVenda(dados, req.usuario);
+        const novoRegistro = await this.service.verificarRegistroVenda(dados, req.user);
 
         return res.status(201).json(novoRegistro);
     }
