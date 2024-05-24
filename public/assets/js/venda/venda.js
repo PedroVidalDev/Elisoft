@@ -22,7 +22,7 @@ window.onload = async () => {
         tdCliente.innerHTML = venda.cliente;
 
         const tdProduto = document.createElement("td");
-        tdProduto.innerHTML = venda.produto_id;
+        tdProduto.innerHTML = venda.Produto.nome;
 
         const tdValor = document.createElement("td");
         tdValor.innerHTML = `R$ ${venda.valor}`;
