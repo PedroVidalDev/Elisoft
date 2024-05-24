@@ -10,7 +10,9 @@ class ProdutoService extends Service{
 
     async verificarRegistroProduto(dadosDoRegistro, usuario){
         const dadoExistente = await this.pegaRegistroPorNome(dadosDoRegistro.nome);
-        const usuarioEncontrado = usuarioService.pegaRegistroPorEmail(usuario);
+        const usuarioEncontrado = await usuarioService.pegaUmRegistroPorId(usuario.id);
+
+        console.log(usuarioEncontrado)
 
         if(usuarioEncontrado == null){
             console.log("Usuario nao existe.")

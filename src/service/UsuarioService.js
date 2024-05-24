@@ -34,7 +34,7 @@ class UsuarioService extends Service{
         if(!usuarioExistente || !await bcrypt.compare(dados.senha, usuarioExistente.senha)){
             return null;
         }
-        const token = jwt.sign({id: usuarioExistente.id, usuario: usuarioExistente.email}, CHAVE, {expiresIn: '3h'});
+        const token = jwt.sign({id: usuarioExistente.id, email: usuarioExistente.email}, CHAVE, {expiresIn: '3h'});
         return {
             mensagem: "Sucesso.", 
             token
