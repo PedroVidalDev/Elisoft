@@ -12,10 +12,10 @@ class VendaService extends Service{
         super("Venda");
     }
 
-    async pegaTodosPopulado(where = {}){
+    async pegaTodosPopulado(usuario){
         return dataSource[this.nomeDoModel].findAll(
             {
-                where: {...where},
+                where: {usuario_id: usuario.id},
                 include: [
                     {
                         model: dataSource['Produto'],
@@ -73,9 +73,24 @@ class VendaService extends Service{
         }
     }
 
-    async resgatarLucro(){
-        let vendas = await this.pegaTodosPopulado();
-        console.log(JSON.stringify(vendas))
+    async resgatarLucro(usuario){
+        let vendasLista = await this.pegaTodosPopulado(usuario);
+
+        let gastos = vendasLista.reduce((acumulador, venda) => {
+            return acumulador + venda.Produto.preco;
+        })
+
+        let vendas = vendasLista.reduce((acumulador, venda) => {
+            return acumulador + venda.valor;
+        })
+
+        let lucro = vendas - gastos;
+
+        return {
+            gastos: gastos,
+            vendas: vendas,
+            lucro: lucro
+        };
     }
 }
 

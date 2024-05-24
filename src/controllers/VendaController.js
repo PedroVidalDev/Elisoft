@@ -17,13 +17,13 @@ class VendaController extends Controller{
     }
 
     async resgatarFluxoDeCaixa(req, res){
-        const dados = await this.service.resgatarLucro();
+        const dados = await this.service.resgatarLucro(req.user);
 
         return res.status(200).json(dados);
     }
 
     async pegarTodosComEntidadesRelacionadas(req, res){
-        const listaRegistros = await this.service.pegaTodosPopulado();
+        const listaRegistros = await this.service.pegaTodosPopulado(req.user);
         return res.status(200).json(listaRegistros);
     }
 }
