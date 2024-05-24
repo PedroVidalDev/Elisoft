@@ -8,6 +8,10 @@ class ProdutoService extends Service{
         super("Produto");
     }
 
+    async atualizarEstoque(id){
+        
+    }
+
     async verificarRegistroProduto(dadosDoRegistro, usuario){
         const dadoExistente = await this.pegaRegistroPorNome(dadosDoRegistro.nome);
         const usuarioEncontrado = await usuarioService.pegaUmRegistroPorId(usuario.id);
