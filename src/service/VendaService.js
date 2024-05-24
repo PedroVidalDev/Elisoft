@@ -31,23 +31,36 @@ class VendaService extends Service{
     }
 
     async verificarRegistroVenda(dadosVenda, usuario){
-        const produto = await produtoService.pegaUmRegistroPorId(dadosVenda.produtoId);
-        const usuarioEncontrado = await usuarioService.pegaRegistroPorEmail(usuario);
+        const produto = await produtoService.pegaUmRegistroPorId(dadosVenda.produto);
+        const usuarioEncontrado = await usuarioService.pegaUmRegistroPorId(usuario.id);
+
+        console.log(produto)
 
         if(usuarioEncontrado == null){
             console.log("Usuario nao existe");
+            return null;
         }
         
         if(produto == null){
             console.log("Produto nao existe");
+            return null;
         }
 
-        if(dados.preco < 0){
+        if(dadosVenda.valor < 0){
             console.log("Preco invalido.");
+            return null;
         }
 
         else{
-            return {mensagem: "Venda registrada com sucesso.", objeto: await this.criaRegistro(dadosVenda)};
+            return {
+                mensagem: "Venda registrada com sucesso.", 
+                objeto: await this.criaRegistro({
+                    usuario_id: usuarioEncontrado.id,
+                    produto_id: produto.id,
+                    valor: dadosVenda.valor,
+                    cliente: dadosVenda.cliente
+                })
+            };
         }
     }
 
