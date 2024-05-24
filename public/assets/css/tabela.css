@@ -1,0 +1,43 @@
+.ajustar-tabela{
+    position: relative;
+    width: 80%;
+    height: 90%;
+    background-color: white;
+    box-shadow: 0px 0px 20px var(--cor-led);
+    color: black;
+    font-size: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 30px;
+    border-radius: 15px;
+    overflow-y: scroll;
+}
+
+table{
+    position: relative;
+    color: black;
+    width: 100%;
+    font-size: 0.5rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+th, td{
+    text-align: center;
+}
+
+.botao-acao{
+    width: 40%;
+    height: 30px;
+    border: 0;
+    border-radius: 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 20px var(--cor-led);
+    transition: .5s;
+    font-weight: bold;
+}
+
+.botao-acao:hover{
+    transform: scale(110%);
+    color: var(--cor-led);
+}
