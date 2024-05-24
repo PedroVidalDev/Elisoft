@@ -53,19 +53,23 @@ class VendaService extends Service{
         }
 
         else{
-            await produtoService.atualizarEstoque(
+            const resultadoEstoque = await produtoService.atualizarEstoque(
                 produto.quantidade - 1,
                 produto.id);
 
-            return {
-                mensagem: "Venda registrada com sucesso.", 
-                objeto: await this.criaRegistro({
-                    usuario_id: usuarioEncontrado.id,
-                    produto_id: produto.id,
-                    valor: dadosVenda.valor,
-                    cliente: dadosVenda.cliente
-                })
-            };
+            if(resultadoEstoque){
+                return {
+                    mensagem: "Venda registrada com sucesso.", 
+                    objeto: await this.criaRegistro({
+                        usuario_id: usuarioEncontrado.id,
+                        produto_id: produto.id,
+                        valor: dadosVenda.valor,
+                        cliente: dadosVenda.cliente
+                    })
+                };
+            } else{
+                return null;
+            }      
         }
     }
 
