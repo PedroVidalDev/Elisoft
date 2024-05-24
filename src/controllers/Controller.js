@@ -12,7 +12,7 @@ class Controller{
     async pegaUmPorId(req, res){
         const {id} = req.params;
 
-        const registro = await this.service.pegaPorId(id);
+        const registro = await this.service.pegaUmRegistroPorId(id);
         return res.status(200).json(registro);
 
     }
