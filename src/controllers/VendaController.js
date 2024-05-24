@@ -21,6 +21,11 @@ class VendaController extends Controller{
 
         return res.status(200).json(dados);
     }
+
+    async pegarTodosComEntidadesRelacionadas(req, res){
+        const listaRegistros = await this.service.pegaTodosPopulado();
+        return res.status(200).json(listaRegistros);
+    }
 }
 
 module.exports = VendaController;

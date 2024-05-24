@@ -18,11 +18,11 @@ class VendaService extends Service{
                 where: {...where},
                 include: [
                     {
-                        model: Produto,
+                        model: dataSource['Produto'],
                         attributes: ['nome', 'descricao', 'preco', 'quantidade']
                     },
                     {
-                        model: Usuario,
+                        model: dataSource['Usuario'],
                         attributes: ['nome', 'email']
                     }
                 ]
