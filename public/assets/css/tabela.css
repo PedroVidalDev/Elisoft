@@ -13,6 +13,19 @@
     overflow-y: scroll;
 }
 
+.ajustar-tabela::-webkit-scrollbar{
+    width: 10px;
+}
+
+.ajustar-tabela::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+   
+.ajustar-tabela::-webkit-scrollbar-thumb {
+    background: var(--cor-led); 
+    border-radius: 10px;
+}
+
 table{
     position: relative;
     color: black;
@@ -58,4 +71,16 @@ th, td{
 .criar-botao:hover{
     transform: scale(110%);
     color: var(--cor-led);
+}
+
+@media (max-width: 940px){
+    table{
+        font-size: 0.3rem;
+    }
+}
+
+@media (max-width: 624px){
+    table{
+        font-size: 0.15rem;
+    }
 }
