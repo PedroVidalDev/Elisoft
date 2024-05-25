@@ -30,3 +30,7 @@ body{
 input:focus-visible{
     outline: none;
 }
+
+a{
+    cursor: pointer;
+}
