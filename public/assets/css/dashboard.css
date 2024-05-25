@@ -69,6 +69,18 @@ main{
 }
 
 @media (max-width: 1044px) {
+    .container-fluxo-de-caixa h2{
+        font-size: 0.6rem;
+    }
+
+    .texto-gastos, .texto-vendas{
+        font-size: 0.4rem;
+    }
+    
+    .texto-lucro{
+        font-size: 1.1rem;
+    }
+
     .container-produtos-mais-estoque{
         height: 60%;
     }

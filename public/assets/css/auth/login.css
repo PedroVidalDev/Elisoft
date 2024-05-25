@@ -69,3 +69,9 @@ form{
 .registrar-text{
     font-size: 0.3rem;
 }
+
+@media (max-width: 556px) {
+    .container-login{
+        width: 90%;
+    }
+}

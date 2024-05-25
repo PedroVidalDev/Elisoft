@@ -34,21 +34,3 @@ input:focus-visible{
 a{
     cursor: pointer;
 }
-
-@media (max-width: 1288px) {
-    html{
-        font-size: 50px;
-    }
-}
-
-@media (max-width: 1044px) {
-    html{
-        font-size: 30px;
-    }
-}
-
-@media (max-width: 648px) {
-    html{
-        font-size: 15px;
-    }
-}

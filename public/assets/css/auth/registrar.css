@@ -69,3 +69,9 @@ form{
 .entrar-text{
     font-size: 0.3rem;
 }
+
+@media (max-width: 556px) {
+    .container-registrar{
+        width: 90%;
+    }
+}
