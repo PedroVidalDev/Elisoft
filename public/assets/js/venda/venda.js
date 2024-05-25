@@ -1,5 +1,10 @@
-const botaoCriar = document.querySelector("#criar-botao");
+const botaoSair = document.querySelector("#sair-botao");
+botaoSair.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+})
 
+const botaoCriar = document.querySelector("#criar-botao");
 botaoCriar.addEventListener("click", () => { window.location.href = "/pages/venda/criarVenda.html"})
 
 import request from "./../utils/requestHttp.js";

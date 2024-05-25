@@ -1,6 +1,12 @@
 import { headerAuth } from "./utils/header.js";
 import request from "./utils/requestHttp.js";
 
+const botaoSair = document.querySelector("#sair-botao");
+botaoSair.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+})
+
 const textoGastos = document.querySelector("#texto-gastos");
 const textoVendas = document.querySelector("#texto-vendas");
 const textoLucro = document.querySelector("#texto-lucro");

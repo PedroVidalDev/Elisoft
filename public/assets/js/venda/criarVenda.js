@@ -1,6 +1,12 @@
 import { headerAuth } from "./../utils/header.js";
 import request from "./../utils/requestHttp.js"
 
+const botaoSair = document.querySelector("#sair-botao");
+botaoSair.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+})
+
 const form = document.querySelector("#form");
 
 form.addEventListener("submit", async (event) => {

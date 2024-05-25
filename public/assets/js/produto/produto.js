@@ -1,6 +1,12 @@
 import request from "./../utils/requestHttp.js";
 import { headerAuth } from "./../utils/header.js";
 
+const botaoSair = document.querySelector("#sair-botao");
+botaoSair.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+})
+
 const botaoCriar = document.querySelector("#criar-botao");
 const tbody = document.querySelector("tbody");
 
