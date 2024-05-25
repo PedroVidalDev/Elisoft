@@ -26,6 +26,13 @@ class VendaController extends Controller{
         const listaRegistros = await this.service.pegaTodosPopulado(req.user);
         return res.status(200).json(listaRegistros);
     }
+
+    async excluiVenda(req, res){
+        const {id} = req.params;
+
+        await this.service.excluiVenda(req.user, id);
+        return res.status(204);
+    }
 }
 
 module.exports = VendaController;

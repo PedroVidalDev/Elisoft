@@ -11,6 +11,6 @@ router.get("/vendas/fluxo", autenticarToken, (req, res) => vendaController.resga
 router.get("/vendas/:id", autenticarToken, (req, res) => vendaController.pegaUmPorId(req, res))
 
 router.post("/vendas", autenticarToken, (req, res) => vendaController.criarVenda(req, res));
-router.delete("/vendas/:id", autenticarToken, (req, res) => vendaController.exclui(req, res));
+router.delete("/vendas/:id", autenticarToken, (req, res) => vendaController.excluiVenda(req, res));
 
 module.exports = router;

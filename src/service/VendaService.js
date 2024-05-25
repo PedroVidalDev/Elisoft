@@ -52,7 +52,8 @@ class VendaService extends Service{
         else{
             const resultadoEstoque = await produtoService.atualizarEstoque(
                 produto.quantidade - 1,
-                produto.id);
+                produto.id
+            );
 
             if(resultadoEstoque){
                 return {
@@ -81,6 +82,18 @@ class VendaService extends Service{
         }
 
         return dados;
+    }
+
+    async excluiVenda(usuario, vendaId){
+        let venda = await this.pegaUmRegistroPorId(Number(vendaId));
+        await this.excluiRegistro(venda.id);
+
+        let produto = await produtoService.pegaUmRegistroPorId(Number(venda.produto_id));
+        
+        await produtoService.atualizarEstoque(
+            produto.quantidade + 1,
+            produto.id
+        );
     }
 }
 
