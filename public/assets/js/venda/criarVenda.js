@@ -1,19 +1,30 @@
 import { headerAuth } from "./../utils/header.js";
 import request from "./../utils/requestHttp.js"
 
-const parametros = new URLSearchParams(window.location.search);
-const produtoId = parametros.get("produtoId");
-const produtoNome = parametros.get("produtoNome");
-
-if(produtoId != null && produtoNome != null){
-    document.querySelector("#produto-input").value = (produtoId + "-" + produtoNome);
-}
+const divSelect = document.querySelector("#ajustar-select");
 
 const botaoSair = document.querySelector("#sair-botao");
 botaoSair.addEventListener("click", () => {
     localStorage.removeItem("token");
     window.location.href = "/";
 })
+
+window.onload = async () => {
+    const reqData = await request("produtos", "GET", headerAuth, null);
+
+    const selectProdutos = document.createElement("select");
+    selectProdutos.id = "produto-input";
+    selectProdutos.className = "produto-input";
+
+    reqData.forEach(produto => {
+        let option = document.createElement("option");
+        option.innerHTML = produto.id + " - " + produto.nome;
+        option.value = produto.id;
+        selectProdutos.appendChild(option);
+    });
+
+    divSelect.appendChild(selectProdutos)
+}
 
 const form = document.querySelector("#form");
 

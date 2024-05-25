@@ -46,6 +46,11 @@ form{
     border-bottom: 1px solid #000;
 }
 
+.ajustar-select{
+    position: relative;
+    width: 100%;
+}
+
 .submit{
     width: 160px;
     height: 50px;

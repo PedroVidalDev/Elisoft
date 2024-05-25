@@ -27,7 +27,7 @@ body{
     background-color: var(--cor-fundo);
 }
 
-input:focus-visible{
+input:focus-visible, select:focus-visible{
     outline: none;
 }
 
