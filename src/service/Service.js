@@ -5,7 +5,7 @@ class Service{
         this.nomeDoModel = nomeDoModel;
     }
 
-    async pegaTodos(id){
+    async pegaTodosPorIdUsuario(id){
         return dataSource[this.nomeDoModel].findAll({where: {usuario_id: id}})
     }
 

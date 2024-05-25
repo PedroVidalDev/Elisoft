@@ -4,7 +4,7 @@ class Controller{
     }
 
     async pegaTodos(req, res){    
-        const listaRegistros = await this.service.pegaTodos(req.user.id);
+        const listaRegistros = await this.service.pegaTodosPorIdUsuario(req.user.id);
         return res.status(200).json(listaRegistros);
 
     }

@@ -73,7 +73,7 @@ class VendaService extends Service{
     async resgatarLucro(usuario){
 
         let vendasLista = await this.pegaTodosPopulado(usuario);
-        let produtosLista = await produtoService.pegaTodos(usuario.id);
+        let produtosLista = await produtoService.pegaTodosPorIdUsuario(usuario.id);
 
         let dados = {          
             vendas: vendasLista,
