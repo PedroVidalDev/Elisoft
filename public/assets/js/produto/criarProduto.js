@@ -16,6 +16,6 @@ form.addEventListener("submit", async (event) => {
         alert(reqData.mensagem);
         window.location.href = "/pages/produto/produtos.html";
     } else{
-        alert("Erro no login. Favor verificar suas informacoes.");
+        alert("Erro na insercao de produto. Verifique os campos.");
     }
 })
