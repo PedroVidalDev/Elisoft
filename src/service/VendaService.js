@@ -34,9 +34,6 @@ class VendaService extends Service{
         const produto = await produtoService.pegaUmRegistroPorId(dadosVenda.produto);
         const usuarioEncontrado = await usuarioService.pegaUmRegistroPorId(usuario.id);
 
-        console.log(produto)
-        console.log(usuarioEncontrado)
-
         if(usuarioEncontrado == null){
             console.log("Usuario nao existe");
             return null;
@@ -74,23 +71,16 @@ class VendaService extends Service{
     }
 
     async resgatarLucro(usuario){
+
         let vendasLista = await this.pegaTodosPopulado(usuario);
+        let produtosLista = await produtoService.pegaTodos(usuario.id);
 
-        let gastos = vendasLista.reduce((acumulador, venda) => {
-            return acumulador + venda.Produto.preco;
-        })
+        let dados = {          
+            vendas: vendasLista,
+            produtos: produtosLista
+        }
 
-        let vendas = vendasLista.reduce((acumulador, venda) => {
-            return acumulador + venda.valor;
-        })
-
-        let lucro = vendas - gastos;
-
-        return {
-            gastos: gastos,
-            vendas: vendas,
-            lucro: lucro
-        };
+        return dados;
     }
 }
 
