@@ -67,3 +67,39 @@ main{
     height: 90%;
     box-shadow: 0px 0px 10px var(--cor-led);
 }
+
+@media (max-width: 1044px) {
+    .container-produtos-mais-estoque{
+        height: 60%;
+    }
+    
+    .container-fluxo-de-caixa{
+        height: 60%;
+    }
+    
+    .container-produtos-mais-vendidos{
+        height: 60%;
+    }
+}
+
+@media (max-width: 648px) {
+    main{
+        flex-direction: column;
+    }
+
+    .container-produtos-mais-estoque{
+        height: 40%;
+        width: 90%;
+    }
+    
+    .container-fluxo-de-caixa{
+        height: 40%;
+        width: 90%;
+        margin: 30px 0;
+    }
+    
+    .container-produtos-mais-vendidos{
+        height: 40%;
+        width: 90%;
+    }
+}
