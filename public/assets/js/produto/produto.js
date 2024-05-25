@@ -46,6 +46,9 @@ window.onload = async () => {
         const botaoVender = document.createElement("button");
         botaoVender.className = "botao-acao";
         botaoVender.innerHTML = "V";
+        botaoVender.addEventListener("click", () => {
+            window.location.href = `/pages/venda/criarVenda.html?produtoId=${produto.id}&produtoNome=${produto.nome}`
+        })
 
         tdVender.appendChild(botaoVender);
 
