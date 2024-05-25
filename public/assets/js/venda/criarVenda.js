@@ -12,7 +12,7 @@ botaoSair.addEventListener("click", () => {
 window.onload = async () => {
     const reqData = await request("produtos", "GET", headerAuth, null);
 
-    const selectProdutos = document.createElement("select");
+    let selectProdutos = document.createElement("select");
     selectProdutos.id = "produto-input";
     selectProdutos.className = "produto-input";
 
@@ -33,7 +33,7 @@ form.addEventListener("submit", async (event) => {
 
     let formData = new FormData(form);
     let dados = Object.fromEntries(formData);
-    dados.produto = Number(produtoId);
+    dados.produto = Number(document.querySelector("#produto-input").value);
     let jsonDados = JSON.stringify(dados);
 
     console.log(jsonDados)
