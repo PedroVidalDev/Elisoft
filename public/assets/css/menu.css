@@ -17,6 +17,7 @@ header nav{
 }
 
 header nav ul{
+    list-style: none;
     position: relative;
     display: flex;
     width: 70%;
@@ -34,4 +35,10 @@ header nav ul li a{
 
 header nav ul li a:hover{
     color: var(--cor-led);
+}
+
+@media (max-width: 456px) {
+    header nav ul li a{
+        font-size: 0.3rem;
+    }
 }
