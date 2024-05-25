@@ -65,3 +65,9 @@ form{
     transform: scale(110%);
     color: var(--cor-led);
 }
+
+@media (max-width: 556px) {
+    .ajustar-criar{
+        width: 90%;
+    }
+}
