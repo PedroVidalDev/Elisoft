@@ -41,6 +41,11 @@ window.onload = async () => {
         const botaoExcluir = document.createElement("button");
         botaoExcluir.className = "botao-acao";
         botaoExcluir.innerHTML = "X";
+        botaoExcluir.addEventListener("click", async () => {
+            await request(`vendas/${venda.id}`, "DELETE", headerAuth, null);
+            alert("Venda excluida com sucesso!");
+            window.location.href = "/pages/venda/vendas.html";
+        })
 
         tdAcao.appendChild(botaoEditar);
         tdAcao.appendChild(botaoExcluir);
