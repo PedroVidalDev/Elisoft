@@ -73,6 +73,23 @@ class ProdutoService extends Service{
         } 
 
     }
+
+    async atualizaProduto(id, dadosAtualizados){
+        const listaDeRegistroAtualizado = dataSource[this.nomeDoModel].update(
+            dadosAtualizados, 
+            {
+                where: {
+                    id: id
+                }
+            }
+        );
+
+        if(listaDeRegistroAtualizado[0] == 0){
+            return false;
+        } else{
+            return true;
+        }
+    }
 }
 
 module.exports = ProdutoService;
