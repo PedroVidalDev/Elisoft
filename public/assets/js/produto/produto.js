@@ -65,6 +65,4 @@ window.onload = async () => {
     });
 }
 
-
-
 botaoCriar.addEventListener("click", () => { window.location.href = "/pages/produto/criarProduto.html"});

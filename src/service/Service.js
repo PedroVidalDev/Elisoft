@@ -20,10 +20,6 @@ class Service{
     async criaRegistro(dadosDoRegistro){
         return dataSource[this.nomeDoModel].create(dadosDoRegistro);
     }
-
-    async excluiRegistro(id){
-        return dataSource[this.nomeDoModel].destroy({where: {id: id}});
-    }
 }
 
 module.exports = Service;
