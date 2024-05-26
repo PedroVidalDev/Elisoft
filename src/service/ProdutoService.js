@@ -11,6 +11,11 @@ class ProdutoService extends Service{
     }
 
     async atualizarEstoque(quantidadeAtualizada, id){
+
+        if(quantidadeAtualizada < 0){
+            return false;
+        }
+
         const listaDeRegistroAtualizado = dataSource[this.nomeDoModel].update(
             {
                 quantidade: quantidadeAtualizada
