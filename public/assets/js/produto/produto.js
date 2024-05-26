@@ -32,11 +32,11 @@ window.onload = async () => {
 
         const botaoEditar = document.createElement("button");
         botaoEditar.className = "botao-acao";
-        botaoEditar.innerHTML = "E";
+        botaoEditar.innerHTML = "Editar";
 
         const botaoExcluir = document.createElement("button");
         botaoExcluir.className = "botao-acao";
-        botaoExcluir.innerHTML = "X";
+        botaoExcluir.innerHTML = "Excluir";
 
         tdAcao.appendChild(botaoEditar);
         tdAcao.appendChild(botaoExcluir);
@@ -45,7 +45,7 @@ window.onload = async () => {
 
         const botaoVender = document.createElement("button");
         botaoVender.className = "botao-acao";
-        botaoVender.innerHTML = "V";
+        botaoVender.innerHTML = "Vender";
         botaoVender.addEventListener("click", () => {
             window.location.href = `/pages/venda/criarVenda.html?produtoId=${produto.id}`
         })
