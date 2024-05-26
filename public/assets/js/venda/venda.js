@@ -34,20 +34,15 @@ window.onload = async () => {
 
         const tdAcao = document.createElement("td")
 
-        const botaoEditar = document.createElement("button");
-        botaoEditar.className = "botao-acao";
-        botaoEditar.innerHTML = "E";
-
         const botaoExcluir = document.createElement("button");
         botaoExcluir.className = "botao-acao";
-        botaoExcluir.innerHTML = "X";
+        botaoExcluir.innerHTML = "Excluir";
         botaoExcluir.addEventListener("click", async () => {
             await request(`vendas/${venda.id}`, "DELETE", headerAuth, null);
             alert("Venda excluida com sucesso!");
             window.location.href = "/pages/venda/vendas.html";
         })
 
-        tdAcao.appendChild(botaoEditar);
         tdAcao.appendChild(botaoExcluir);
 
         tr.appendChild(tdCliente);
