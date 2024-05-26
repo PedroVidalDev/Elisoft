@@ -23,7 +23,14 @@ window.onload = async () => {
         selectProdutos.appendChild(option);
     });
 
-    divSelect.appendChild(selectProdutos)
+    divSelect.appendChild(selectProdutos);
+
+    const parametros = new URLSearchParams(window.location.search);
+    const produtoIdParam = parametros.get("produtoId");
+
+    if(produtoIdParam != null){
+        selectProdutos.value = produtoIdParam;
+    }
 }
 
 const form = document.querySelector("#form");
