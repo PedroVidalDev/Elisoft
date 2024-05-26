@@ -33,6 +33,9 @@ window.onload = async () => {
         const botaoEditar = document.createElement("button");
         botaoEditar.className = "botao-acao";
         botaoEditar.innerHTML = "Editar";
+        botaoEditar.addEventListener("click", () => {
+            window.location.href = `/pages/produto/criarProduto.html?produtoId=${produto.id}`;
+        })
 
         const botaoExcluir = document.createElement("button");
         botaoExcluir.className = "botao-acao";
