@@ -28,7 +28,7 @@ window.onload = async () => {
         const tdPreco = document.createElement("td");
         tdPreco.innerHTML = `R$ ${produto.preco}`;
 
-        const tdAcao = document.createElement("td")
+        const tdEditar = document.createElement("td")
 
         const botaoEditar = document.createElement("button");
         botaoEditar.className = "botao-acao";
@@ -37,12 +37,15 @@ window.onload = async () => {
             window.location.href = `/pages/produto/criarProduto.html?produtoId=${produto.id}`;
         })
 
+        tdEditar.appendChild(botaoEditar);
+
+        const tdExcluir = document.createElement("td");
+
         const botaoExcluir = document.createElement("button");
         botaoExcluir.className = "botao-acao";
         botaoExcluir.innerHTML = "Excluir";
 
-        tdAcao.appendChild(botaoEditar);
-        tdAcao.appendChild(botaoExcluir);
+        tdExcluir.appendChild(botaoExcluir);
 
         const tdVender = document.createElement("td");
 
@@ -58,7 +61,8 @@ window.onload = async () => {
         tr.appendChild(tdNome);
         tr.appendChild(tdQuantidade);
         tr.appendChild(tdPreco);
-        tr.appendChild(tdAcao);
+        tr.appendChild(tdEditar);
+        tr.appendChild(tdExcluir);
         tr.appendChild(tdVender);
 
         tbody.appendChild(tr);

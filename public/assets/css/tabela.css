@@ -39,8 +39,8 @@ th, td{
     text-align: center;
 }
 
-.botao-acao{
-    width: 45%;
+td button{
+    width: 70px;
     height: 30px;
     border: 0;
     border-radius: 15px;
@@ -51,7 +51,7 @@ th, td{
     font-weight: bold;
 }
 
-.botao-acao:hover{
+td button:hover{
     transform: scale(110%);
     color: var(--cor-led);
 }
@@ -74,24 +74,24 @@ th, td{
     color: var(--cor-led);
 }
 
-@media (max-width: 940px){
+@media (max-width: 1308px){
     table{
         font-size: 0.3rem;
     }
 
-    .botao-acao{
-        font-size: 0.2rem;
+    td button{
+        font-size: 0.1rem;
         height: 20px;
     }
 }
 
-@media (max-width: 624px){
+@media (max-width: 988px){
     table{
         font-size: 0.15rem;
     }
 
-    .botao-acao{
-        width: 45%;
+    td button{
+        width: 30px;
         height: 15px;
         font-size: 0.1rem;
     }
