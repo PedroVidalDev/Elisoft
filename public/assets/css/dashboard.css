@@ -13,6 +13,8 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: white;
+    border-radius: 15px;
     width: 20%;
     height: 90%;
     box-shadow: 0px 0px 10px var(--cor-led);
@@ -25,6 +27,8 @@ main{
     align-items: center;
     justify-content: space-between;
     padding: 20px 20px;
+    background-color: white;
+    border-radius: 15px;
     width: 50%;
     height: 90%;
     box-shadow: 0px 0px 10px var(--cor-led);
@@ -32,7 +36,7 @@ main{
 }
 
 .container-fluxo-de-caixa h2{
-    color: white;
+    color: black;
     font-size: 1rem;
 }
 
@@ -46,14 +50,14 @@ main{
 }
 
 .texto-gastos, .texto-vendas{
-    color: white;
+    color: black;
     font-size: 0.7rem;
     width: 90%;
     text-align: left;
 }
 
 .texto-lucro{
-    color: white;
+    color: black;
     font-size: 1.5rem;
 }
 
@@ -63,6 +67,8 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: white;
+    border-radius: 15px;
     width: 20%;
     height: 90%;
     box-shadow: 0px 0px 10px var(--cor-led);
