@@ -90,6 +90,15 @@ class ProdutoService extends Service{
             return true;
         }
     }
+
+    async resgataMaiorEstoque(usuario){
+        const todosProdutos = await this.pegaTodosPorIdUsuario(usuario.id);
+
+        const maiorEstoque = todosProdutos.sort((a, b) => b.quantidade - a.quantidade);
+        console.log(maiorEstoque);
+
+        return maiorEstoque;
+    }
 }
 
 module.exports = ProdutoService;

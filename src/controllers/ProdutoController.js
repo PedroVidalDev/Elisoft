@@ -33,6 +33,12 @@ class ProdutoController extends Controller{
         }
     }
 
+    async pegaMaiorEstoque(req, res){
+        const produtos = await this.service.resgataMaiorEstoque(req.user);
+
+        return res.status(200).json(produtos);
+    }
+
 }
 
 module.exports = ProdutoController;
