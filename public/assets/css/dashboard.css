@@ -29,6 +29,7 @@ main{
 .container-produtos-mais-estoque p{
     color: black;
     font-size: 0.25rem;
+    margin-top: 15px;
 }
 
 .container-fluxo-de-caixa{

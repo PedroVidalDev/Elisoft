@@ -18,8 +18,11 @@ const reqDataFluxo = await request("vendas/fluxo", "GET", headerAuth, null);
 let produtos = reqDataFluxo.produtos;
 let vendas = reqDataFluxo.vendas;
 
-let gastosTotais = produtos.reduce((acc, produto) => acc + (produto.preco * produto.quantidade), 0);
-let vendasTotais = vendas.reduce((acc, produto) => acc + produto.valor, 0);
+let gastos = produtos.reduce((acc, produto) => acc + (produto.preco * produto.quantidade), 0);
+let restoDosGastos = vendas.reduce((acc, venda) => acc + (venda.Produto.preco), 0);
+let gastosTotais = gastos + restoDosGastos;
+
+let vendasTotais = vendas.reduce((acc, venda) => acc + venda.valor, 0);
 
 textoGastos.innerHTML = `Gastos: R$ ${gastosTotais}`;
 textoVendas.innerHTML = `Vendas: R$ ${vendasTotais}`;
