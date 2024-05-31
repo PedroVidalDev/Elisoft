@@ -11,7 +11,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Venda.belongsTo(models.Produto, {
-        foreignKey: "produto_id"
+        foreignKey: "produto_id",
+        onDelete: 'cascade',
+        hooks: true,
       })
       Venda.belongsTo(models.Usuario, {
         foreignKey: "usuario_id"

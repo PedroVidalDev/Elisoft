@@ -11,10 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Produto.belongsTo(models.Usuario, {
-        foreignKey: "usuario_id"
+        foreignKey: "usuario_id",
       })
       Produto.hasMany(models.Venda, {
-        foreignKey: "produto_id"
+        foreignKey: "produto_id",
+        onDelete: 'cascade'
       })
     }
   }

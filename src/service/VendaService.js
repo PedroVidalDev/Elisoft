@@ -110,6 +110,14 @@ class VendaService extends Service{
                 }
             }
         );
+
+        await produtoService.excluiRegistro(
+            {
+                where: {
+                    usuario_id: usuario.id
+                }
+            }
+        );
     }
 }
 
