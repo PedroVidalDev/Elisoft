@@ -33,7 +33,7 @@ let gastosTotais = gastos + restoDosGastos;
 
 let vendasTotais = vendas.reduce((acc, venda) => acc + venda.valor, 0);
 
-textoGastos.innerHTML = `Gastos: <b> R$ ${gastosTotais} </b>`;
+textoGastos.innerHTML = `Gastos: <b> R$ -${gastosTotais} </b>`;
 textoVendas.innerHTML = `Vendas: <b> R$ ${vendasTotais} </b>`;
 textoLucro.innerHTML = `Lucro: <b> R$ ${vendasTotais - gastosTotais} </b>`;
 
