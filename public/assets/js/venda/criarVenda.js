@@ -18,7 +18,7 @@ window.onload = async () => {
 
     reqData.forEach(produto => {
         let option = document.createElement("option");
-        option.innerHTML = produto.id + " - " + produto.nome;
+        option.innerHTML = produto.nome;
         option.value = produto.id;
         selectProdutos.appendChild(option);
     });

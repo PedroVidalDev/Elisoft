@@ -7,8 +7,17 @@ botaoSair.addEventListener("click", () => {
     window.location.href = "/";
 })
 
+// ESTOQUE //
 const containerEstoque = document.querySelector("#container-produtos-mais-estoque");
 
+const reqDataEstoque = await request("produtos/maiorEstoque", "GET", headerAuth, null);
+reqDataEstoque.forEach(produto => {
+    const texto = document.createElement("p");
+    texto.innerHTML = `${produto.nome} - ${produto.quantidade}u`;
+    containerEstoque.appendChild(texto);
+});
+
+// FLUXO //
 const textoGastos = document.querySelector("#texto-gastos");
 const textoVendas = document.querySelector("#texto-vendas");
 const textoLucro = document.querySelector("#texto-lucro");
@@ -28,9 +37,15 @@ textoGastos.innerHTML = `Gastos: R$ ${gastosTotais}`;
 textoVendas.innerHTML = `Vendas: R$ ${vendasTotais}`;
 textoLucro.innerHTML = `Lucro: R$ ${vendasTotais - gastosTotais}`;
 
-const reqDataEstoque = await request("produtos/maiorEstoque", "GET", headerAuth, null);
-reqDataEstoque.forEach(produto => {
-    const texto = document.createElement("p");
-    texto.innerHTML = `${produto.nome} - ${produto.quantidade}u`;
-    containerEstoque.appendChild(texto);
-});
+// RESETAR //
+const botaoResetar = document.querySelector("#botao-resetar");
+botaoResetar.addEventListener("click", async () => {
+    const reqData = await request("vendas/resetar", "POST", headerAuth, null);
+    
+    if(reqData != null){
+        alert(reqData.mensagem);
+        window.location.href = "/pages/dashboard.html";
+    } else{
+        alert("Erro no reset de vendas e produtos.");
+    }
+})
