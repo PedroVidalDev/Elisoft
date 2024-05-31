@@ -33,9 +33,9 @@ let gastosTotais = gastos + restoDosGastos;
 
 let vendasTotais = vendas.reduce((acc, venda) => acc + venda.valor, 0);
 
-textoGastos.innerHTML = `Gastos: R$ ${gastosTotais}`;
-textoVendas.innerHTML = `Vendas: R$ ${vendasTotais}`;
-textoLucro.innerHTML = `Lucro: R$ ${vendasTotais - gastosTotais}`;
+textoGastos.innerHTML = `Gastos: <b> R$ ${gastosTotais} </b>`;
+textoVendas.innerHTML = `Vendas: <b> R$ ${vendasTotais} </b>`;
+textoLucro.innerHTML = `Lucro: <b> R$ ${vendasTotais - gastosTotais} </b>`;
 
 // RESETAR //
 const botaoResetar = document.querySelector("#botao-resetar");
