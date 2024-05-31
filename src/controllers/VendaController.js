@@ -33,6 +33,13 @@ class VendaController extends Controller{
         await this.service.excluiVenda(req.user, id);
         return res.status(204);
     }
+
+    async resetarVendas(req, res){
+        await this.service.resetarVendasUsuario(req.user);
+        return res.status(200).json({
+            mensagem: "Vendas restauradas!"
+        })
+    }
 }
 
 module.exports = VendaController;

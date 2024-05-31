@@ -87,17 +87,40 @@ main{
     font-size: 1.5rem;
 }
 
-.container-produtos-mais-vendidos{
+.container-resetar{
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     background-color: white;
     border-radius: 15px;
+    padding: 15px 15px;
     width: 20%;
     height: 90%;
     box-shadow: 0px 0px 10px var(--cor-led);
+}
+
+.container-resetar h2{
+    color: black;
+    font-size: 0.3rem;
+}
+
+.container-resetar button{
+    width: 160px;
+    height: 50px;
+    border-radius: 15px;
+    font-size: 0.3rem;
+    border: 0;
+    box-shadow: 0px 0px 30px var(--cor-led);
+    cursor: pointer;
+    margin-top: 30px;
+    transition: .5s;
+}
+
+.container-resetar button:hover{
+    transform: scale(110%);
+    color: var(--cor-led);
 }
 
 @media (max-width: 1188px) {

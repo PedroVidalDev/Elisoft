@@ -86,13 +86,29 @@ class VendaService extends Service{
 
     async excluiVenda(usuario, vendaId){
         let venda = await this.pegaUmRegistroPorId(Number(vendaId));
-        await this.excluiRegistro(venda.id);
+        await this.excluiRegistro(
+            {
+                where: {
+                    id:venda.id
+                }
+            }
+        );
 
         let produto = await produtoService.pegaUmRegistroPorId(Number(venda.produto_id));
         
         await produtoService.atualizarEstoque(
             produto.quantidade + 1,
             produto.id
+        );
+    }
+
+    async resetarVendasUsuario(usuario){
+        await this.excluiRegistro(
+            {
+                where: {
+                    usuario_id: usuario.id
+                }
+            }
         );
     }
 }
