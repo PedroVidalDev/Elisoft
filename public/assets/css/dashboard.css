@@ -19,6 +19,20 @@ main{
     width: 20%;
     height: 90%;
     box-shadow: 0px 0px 10px var(--cor-led);
+    overflow-y: scroll;
+}
+
+.container-produtos-mais-estoque::-webkit-scrollbar{
+    width: 10px;
+}
+
+.container-produtos-mais-estoque::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+   
+.container-produtos-mais-estoque::-webkit-scrollbar-thumb {
+    background: var(--cor-led); 
+    border-radius: 10px;
 }
 
 .container-produtos-mais-estoque h2{
