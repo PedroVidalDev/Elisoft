@@ -9,36 +9,79 @@ class VendaController extends Controller{
     }
 
     async criarVenda(req, res){
-        const dados = req.body;
+        try {
+            const dados = req.body;
 
-        const novoRegistro = await this.service.verificarRegistroVenda(dados, req.user);
+            const novoRegistro = await this.service.verificarRegistroVenda(dados, req.user);
+    
+            return res.status(201).json(novoRegistro);   
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na criacao de venda."
+            })
+        }
 
-        return res.status(201).json(novoRegistro);
     }
 
     async resgatarFluxoDeCaixa(req, res){
-        const dados = await this.service.resgatarLucro(req.user);
+        try {
+            const dados = await this.service.resgatarLucro(req.user);
 
-        return res.status(200).json(dados);
+            return res.status(200).json(dados);  
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro no resgate de fluxo de caixa."
+            })
+        }
+
     }
 
     async pegarTodosComEntidadesRelacionadas(req, res){
-        const listaRegistros = await this.service.pegaTodosPopulado(req.user);
-        return res.status(200).json(listaRegistros);
+        try {
+            const listaRegistros = await this.service.pegaTodosPopulado(req.user);
+            return res.status(200).json(listaRegistros);  
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro no resgate de vendas."
+            })
+        }
+
     }
 
     async excluiVenda(req, res){
-        const {id} = req.params;
+        try {
+            const {id} = req.params;
 
-        await this.service.excluiVenda(req.user, id);
-        return res.status(204);
+            await this.service.excluiVenda(req.user, id);
+            return res.status(204); 
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na exclusao de venda."
+            })
+        }
+
     }
 
     async resetarVendas(req, res){
-        await this.service.resetarVendasUsuario(req.user);
-        return res.status(200).json({
-            mensagem: "Vendas restauradas!"
-        })
+        try {
+            await this.service.resetarVendasUsuario(req.user);
+            return res.status(200).json({
+                mensagem: "Vendas restauradas!"
+            }) 
+        } catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro no reset de vendas."
+            })
+        }
+        
     }
 }
 

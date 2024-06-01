@@ -3,33 +3,67 @@ class Controller{
         this.service = service;
     }
 
-    async pegaTodos(req, res){    
-        const listaRegistros = await this.service.pegaTodosPorIdUsuario(req.user.id);
-        return res.status(200).json(listaRegistros);
+    async pegaTodos(req, res){
+        try {
+           const listaRegistros = await this.service.pegaTodosPorIdUsuario(req.user.id);
+            return res.status(200).json(listaRegistros); 
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na busca."
+            })
+        }
+        
 
     }
 
     async pegaUmPorId(req, res){
-        const {id} = req.params;
+        try {
+            const {id} = req.params;
 
-        const registro = await this.service.pegaUmRegistroPorId(id);
-        return res.status(200).json(registro);
+            const registro = await this.service.pegaUmRegistroPorId(id);
+            return res.status(200).json(registro);
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na busca."
+            })
+        }
+        
 
     }
 
     async criaNovo(req, res){
-        const dados = req.body;
+        try {
+            const dados = req.body;
 
-        const novoRegistro = await this.service.criaRegistro(dados);
-        return res.status(201).json(novoRegistro);
+            const novoRegistro = await this.service.criaRegistro(dados);
+            return res.status(201).json(novoRegistro);
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na criacao."
+            })
+        }
+        
 
     }
 
     async exclui(req, res){
-        const { id } = req.params;
+        try {
+            const { id } = req.params;
 
-        await this.service.excluiRegistro(Number(id));
-        return res.status(204);
+            await this.service.excluiRegistro(Number(id));
+            return res.status(204);
+        } catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na exclusao."
+            })
+        }
+        
 
     }
 }

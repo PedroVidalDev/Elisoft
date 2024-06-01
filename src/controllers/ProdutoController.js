@@ -9,34 +9,61 @@ class ProdutoController extends Controller{
     }
 
     async criarProduto(req, res){
-        const dados = req.body;
+        try {
+            const dados = req.body;
 
-        const novoRegistro = await this.service.verificarRegistroProduto(dados, req.user);
-        return res.status(201).json(novoRegistro);
+            const novoRegistro = await this.service.verificarRegistroProduto(dados, req.user);
+            return res.status(201).json(novoRegistro);
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na criacao de produto."
+            })
+        }
+
 
     }
 
     async editarProduto(req, res){
-        const {id} = req.params;
-        const dadosAtualizados = req.body;
-
-        const foiAtualizado = await this.service.atualizaProduto(id, dadosAtualizados);
-
-        if(foiAtualizado){
-            return res.status(200).json({
-                mensagem: "Produto foi atualizado."
-            });
-        } else{
+        try {
+            const {id} = req.params;
+            const dadosAtualizados = req.body;
+    
+            const foiAtualizado = await this.service.atualizaProduto(id, dadosAtualizados);
+    
+            if(foiAtualizado){
+                return res.status(200).json({
+                    mensagem: "Produto foi atualizado."
+                });
+            } else{
+                return res.status(400).json({
+                    message: "Produto nao pode ser atualizado. Erro."
+                });
+            }       
+        } 
+        
+        catch (error) {
             return res.status(400).json({
-                message: "Produto nao pode ser atualizado. Erro."
-            });
+                mensagem: "Erro na edicao de produto."
+            })
         }
+
     }
 
     async pegaMaiorEstoque(req, res){
-        const produtos = await this.service.resgataMaiorEstoque(req.user);
+        try {
+            const produtos = await this.service.resgataMaiorEstoque(req.user);
 
-        return res.status(200).json(produtos);
+            return res.status(200).json(produtos);  
+        } 
+        
+        catch (error) {
+            return res.status(400).json({
+                mensagem: "Erro na busca de produto com maior estoque."
+            })
+        }
+
     }
 
 }
