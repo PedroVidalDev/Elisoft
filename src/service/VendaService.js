@@ -6,6 +6,7 @@ const produtoService = new ProdutoService();
 const usuarioService = new UsuarioService();
 
 const dataSource = require("../models");
+const ErroPersonalizado = require("../exceptions/ErroPersonalizado.js");
 
 class VendaService extends Service{
     constructor(){
@@ -35,18 +36,15 @@ class VendaService extends Service{
         const usuarioEncontrado = await usuarioService.pegaUmRegistroPorId(usuario.id);
 
         if(usuarioEncontrado == null){
-            console.log("Usuario nao existe");
-            return null;
+            throw new ErroPersonalizado("Usuario nao existe", 400);
         }
         
         if(produto == null){
-            console.log("Produto nao existe");
-            return null;
+            throw new ErroPersonalizado("Produto nao existe", 400);
         }
 
         if(dadosVenda.valor < 0){
-            console.log("Preco invalido.");
-            return null;
+            throw new ErroPersonalizado("Preco invalido.", 400);
         }
 
         else{
@@ -55,19 +53,15 @@ class VendaService extends Service{
                 produto.id
             );
 
-            if(resultadoEstoque){
-                return {
-                    mensagem: "Venda registrada com sucesso.", 
-                    objeto: await this.criaRegistro({
-                        usuario_id: usuarioEncontrado.id,
-                        produto_id: produto.id,
-                        valor: dadosVenda.valor,
-                        cliente: dadosVenda.cliente
-                    })
-                };
-            } else{
-                return null;
-            }      
+            return {
+                mensagem: "Venda registrada com sucesso.", 
+                objeto: await this.criaRegistro({
+                    usuario_id: usuarioEncontrado.id,
+                    produto_id: produto.id,
+                    valor: dadosVenda.valor,
+                    cliente: dadosVenda.cliente
+                })
+            }; 
         }
     }
 
@@ -85,39 +79,52 @@ class VendaService extends Service{
     }
 
     async excluiVenda(usuario, vendaId){
-        let venda = await this.pegaUmRegistroPorId(Number(vendaId));
-        await this.excluiRegistro(
-            {
-                where: {
-                    id:venda.id
+        try{
+            let venda = await this.pegaUmRegistroPorId(Number(vendaId));
+            await this.excluiRegistro(
+                {
+                    where: {
+                        id:venda.id
+                    }
                 }
-            }
-        );
+            );
+    
+            let produto = await produtoService.pegaUmRegistroPorId(Number(venda.produto_id));
+            
+            await produtoService.atualizarEstoque(
+                produto.quantidade + 1,
+                produto.id
+            );
+        }
 
-        let produto = await produtoService.pegaUmRegistroPorId(Number(venda.produto_id));
-        
-        await produtoService.atualizarEstoque(
-            produto.quantidade + 1,
-            produto.id
-        );
+        catch(error){
+            throw new ErroPersonalizado("Erro ao excluir venda.", 400);
+        }
+
     }
 
     async resetarVendasUsuario(usuario){
-        await this.excluiRegistro(
-            {
-                where: {
-                    usuario_id: usuario.id
+        try{
+            await this.excluiRegistro(
+                {
+                    where: {
+                        usuario_id: usuario.id
+                    }
                 }
-            }
-        );
+            );
+    
+            await produtoService.excluiRegistro(
+                {
+                    where: {
+                        usuario_id: usuario.id
+                    }
+                }
+            );
+        }
+        catch(error){
+            throw new ErroPersonalizado("Erro ao resetar vendas.", 400);
+        }
 
-        await produtoService.excluiRegistro(
-            {
-                where: {
-                    usuario_id: usuario.id
-                }
-            }
-        );
     }
 }
 

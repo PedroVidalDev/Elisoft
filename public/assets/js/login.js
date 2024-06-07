@@ -11,13 +11,14 @@ form.addEventListener("submit", async (event) => {
     let jsonDados = JSON.stringify(dados);
 
     const reqData = await request("login", "POST", header, jsonDados);
+    console.log(reqData)
 
-    if(reqData != null){
+    if(!reqData.status == 403 || reqData.status == null){
         localStorage.setItem("token", reqData.token);
         alert(reqData.mensagem);
         window.location.href = "/pages/dashboard.html";
     } else{
-        alert("Erro no login. Favor verificar suas informacoes.");
+        alert(reqData.mensagem);
     }
 
 })

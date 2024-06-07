@@ -8,28 +8,31 @@ class UsuarioController extends Controller{
         super(usuarioService);
     }
 
-    async registrar(req, res){
-        const dados = req.body;
+    async registrar(req, res, next){
+        try{
+            const dados = req.body;
 
-        const novoRegistro = await this.service.verificarRegistroUsuario(dados);
-    
-        if(novoRegistro != null){
+            const novoRegistro = await this.service.verificarRegistroUsuario(dados);
+        
             return res.status(201).json(novoRegistro);
-        } else{
-            return res.status(400);
-        } 
+        }
+        catch(error){
+            next(error);
+        }
     }
 
-    async logar(req, res){
-        const dados = req.body;
+    async logar(req, res, next){
+        try{
+            const dados = req.body;
 
-        const novoLogin = await this.service.verificarLogin(dados);
+            const novoLogin = await this.service.verificarLogin(dados);
 
-        if(novoLogin != null){
             return res.status(200).json(novoLogin);
-        } else{
-            return res.status(400);
+
+        } catch(error){
+            next(error);
         }
+        
     }
 }
 

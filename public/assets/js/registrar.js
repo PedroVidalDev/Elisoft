@@ -23,12 +23,11 @@ form.addEventListener("submit", async (event) => {
     let jsonDados = JSON.stringify(dadosLimpos);
 
     const reqData = await request("registrar", "POST", header, jsonDados);
-
-    if(reqData != null){
-        alert(reqData.mensagem);
+    
+    if(!reqData.status){    
         window.location.href = "/";
     } else{
-        alert("Erro no registro. Favor verificar suas informacoes.");
+        alert(reqData.mensagem);
     }
 
 })

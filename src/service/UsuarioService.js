@@ -2,6 +2,7 @@ const Service = require("./Service.js");
 const bcrypt = require('bcrypt');
 const jwt = require("jsonwebtoken")
 const dataSource = require("../models");
+const ErroPersonalizado = require("../exceptions/ErroPersonalizado.js");
 
 const CHAVE = process.env.CHAVE;
 
@@ -17,6 +18,7 @@ class UsuarioService extends Service{
             const senhaCodificada = await bcrypt.hash(dados.senha, 10);
 
             return {
+                status: 201,
                 mensagem: "Usuario criado com sucesso!",
                 objeto: await this.criaRegistro({
                     nome: dados.nome,
@@ -24,15 +26,15 @@ class UsuarioService extends Service{
                     senha: senhaCodificada
                 })
             } 
+        } else{
+            throw new ErroPersonalizado("Usuario inserido ja existe no banco de dados.", 400);
         }
-
-        return null;
     }
 
     async verificarLogin(dados){
         const usuarioExistente = await this.pegaRegistroPorEmail(dados.email);
         if(!usuarioExistente || !await bcrypt.compare(dados.senha, usuarioExistente.senha)){
-            return null;
+            throw new ErroPersonalizado("Login nao autorizado. Favor verificar os campos.", 403);
         }
         const token = jwt.sign({id: usuarioExistente.id, email: usuarioExistente.email}, CHAVE, {expiresIn: '3h'});
         return {

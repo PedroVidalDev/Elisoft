@@ -1,9 +1,7 @@
 async function request(entidade, metodo, header, body){
     let response;
 
-    //let endereco = 
-
-    await fetch(`http://elisoftapp.local:3000/${entidade}`,{
+    await fetch(`http://localhost:3000/${entidade}`,{
         mode: "cors",
         method: `${metodo}`,
         headers: header,

@@ -3,22 +3,20 @@ class Controller{
         this.service = service;
     }
 
-    async pegaTodos(req, res){
+    async pegaTodos(req, res, next){
         try {
            const listaRegistros = await this.service.pegaTodosPorIdUsuario(req.user.id);
             return res.status(200).json(listaRegistros); 
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na busca."
-            })
+            next(error);
         }
         
 
     }
 
-    async pegaUmPorId(req, res){
+    async pegaUmPorId(req, res, next){
         try {
             const {id} = req.params;
 
@@ -27,15 +25,13 @@ class Controller{
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na busca."
-            })
+            next(error);
         }
         
 
     }
 
-    async criaNovo(req, res){
+    async criaNovo(req, res, next){
         try {
             const dados = req.body;
 
@@ -44,24 +40,20 @@ class Controller{
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na criacao."
-            })
+            next(error);
         }
         
 
     }
 
-    async exclui(req, res){
+    async exclui(req, res, next){
         try {
             const { id } = req.params;
 
             await this.service.excluiRegistro(Number(id));
             return res.status(204);
         } catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na exclusao."
-            })
+            next(error);
         }
         
 

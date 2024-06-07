@@ -8,7 +8,7 @@ class ProdutoController extends Controller{
         super(produtoService);
     }
 
-    async criarProduto(req, res){
+    async criarProduto(req, res, next){
         try {
             const dados = req.body;
 
@@ -17,41 +17,31 @@ class ProdutoController extends Controller{
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na criacao de produto."
-            })
+            next(error);
         }
 
 
     }
 
-    async editarProduto(req, res){
+    async editarProduto(req, res, next){
         try {
             const {id} = req.params;
             const dadosAtualizados = req.body;
     
             const foiAtualizado = await this.service.atualizaProduto(id, dadosAtualizados);
     
-            if(foiAtualizado){
-                return res.status(200).json({
-                    mensagem: "Produto foi atualizado."
-                });
-            } else{
-                return res.status(400).json({
-                    message: "Produto nao pode ser atualizado. Erro."
-                });
-            }       
+            return res.status(200).json({
+                mensagem: "Produto foi atualizado."
+            });
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na edicao de produto."
-            })
+            next(error);
         }
 
     }
 
-    async pegaMaiorEstoque(req, res){
+    async pegaMaiorEstoque(req, res, next){
         try {
             const produtos = await this.service.resgataMaiorEstoque(req.user);
 
@@ -59,9 +49,7 @@ class ProdutoController extends Controller{
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na busca de produto com maior estoque."
-            })
+            next(error);
         }
 
     }

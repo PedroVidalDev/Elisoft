@@ -6,12 +6,12 @@ const router = Router();
 
 const vendaController = new VendaController();
 
-router.get("/vendas", autenticarToken, (req, res) => vendaController.pegarTodosComEntidadesRelacionadas(req, res));
-router.get("/vendas/fluxo", autenticarToken, (req, res) => vendaController.resgatarFluxoDeCaixa(req, res));
-router.get("/vendas/:id", autenticarToken, (req, res) => vendaController.pegaUmPorId(req, res))
+router.get("/vendas", autenticarToken, (req, res, next) => vendaController.pegarTodosComEntidadesRelacionadas(req, res, next));
+router.get("/vendas/fluxo", autenticarToken, (req, res, next) => vendaController.resgatarFluxoDeCaixa(req, res, next));
+router.get("/vendas/:id", autenticarToken, (req, res, next) => vendaController.pegaUmPorId(req, res, next))
 
-router.post("/vendas", autenticarToken, (req, res) => vendaController.criarVenda(req, res));
-router.post("/vendas/resetar", autenticarToken, (req, res) => vendaController.resetarVendas(req, res));
-router.delete("/vendas/:id", autenticarToken, (req, res) => vendaController.excluiVenda(req, res));
+router.post("/vendas", autenticarToken, (req, res, next) => vendaController.criarVenda(req, res, next));
+router.post("/vendas/resetar", autenticarToken, (req, res, next) => vendaController.resetarVendas(req, res, next));
+router.delete("/vendas/:id", autenticarToken, (req, res, next) => vendaController.excluiVenda(req, res, next));
 
 module.exports = router;

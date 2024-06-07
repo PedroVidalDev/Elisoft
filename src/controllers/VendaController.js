@@ -8,7 +8,7 @@ class VendaController extends Controller{
         super(vendaService);
     }
 
-    async criarVenda(req, res){
+    async criarVenda(req, res, next){
         try {
             const dados = req.body;
 
@@ -18,14 +18,12 @@ class VendaController extends Controller{
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na criacao de venda."
-            })
+            next(error);
         }
 
     }
 
-    async resgatarFluxoDeCaixa(req, res){
+    async resgatarFluxoDeCaixa(req, res, next){
         try {
             const dados = await this.service.resgatarLucro(req.user);
 
@@ -33,28 +31,24 @@ class VendaController extends Controller{
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro no resgate de fluxo de caixa."
-            })
+            next(error);
         }
 
     }
 
-    async pegarTodosComEntidadesRelacionadas(req, res){
+    async pegarTodosComEntidadesRelacionadas(req, res, next){
         try {
             const listaRegistros = await this.service.pegaTodosPopulado(req.user);
             return res.status(200).json(listaRegistros);  
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro no resgate de vendas."
-            })
+            next(error);
         }
 
     }
 
-    async excluiVenda(req, res){
+    async excluiVenda(req, res, next){
         try {
             const {id} = req.params;
 
@@ -63,23 +57,19 @@ class VendaController extends Controller{
         } 
         
         catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro na exclusao de venda."
-            })
+            next(error);
         }
 
     }
 
-    async resetarVendas(req, res){
+    async resetarVendas(req, res, next){
         try {
             await this.service.resetarVendasUsuario(req.user);
             return res.status(200).json({
                 mensagem: "Vendas restauradas!"
             }) 
         } catch (error) {
-            return res.status(400).json({
-                mensagem: "Erro no reset de vendas."
-            })
+            next(error);
         }
         
     }

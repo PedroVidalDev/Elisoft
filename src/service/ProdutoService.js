@@ -4,6 +4,7 @@ const UsuarioService = require("./UsuarioService.js");
 const usuarioService = new UsuarioService();
 
 const dataSource = require("../models");
+const ErroPersonalizado = require("../exceptions/ErroPersonalizado.js");
 
 class ProdutoService extends Service{
     constructor(){
@@ -13,7 +14,7 @@ class ProdutoService extends Service{
     async atualizarEstoque(quantidadeAtualizada, id){
 
         if(quantidadeAtualizada < 0){
-            return false;
+            throw new ErroPersonalizado("Quantidade do produto menor que 0", 400)
         }
 
         const listaDeRegistroAtualizado = dataSource[this.nomeDoModel].update(
@@ -28,9 +29,7 @@ class ProdutoService extends Service{
         );
 
         if(listaDeRegistroAtualizado[0] == 0){
-            return false;
-        } else{
-            return true;
+            throw new ErroPersonalizado("Quantidade nao pode ser atualizada.", 500)
         }
     }
 
@@ -41,23 +40,20 @@ class ProdutoService extends Service{
         console.log(usuarioEncontrado)
 
         if(usuarioEncontrado == null){
-            console.log("Usuario nao existe.")
-            return null
+            throw new ErroPersonalizado("Operacao nao foi autorizada.", 403)
         }
 
         if(dadoExistente != null){
-            console.log("Produto ja existe.")
-            return null
+            throw new ErroPersonalizado("Produto ja existe.", 400)
+
         }
 
         if(dadosDoRegistro.preco < 0){
-            console.log("Preco menos que 0");
-            return null
+            throw new ErroPersonalizado("Preco menos que 0", 403);
         }
 
         if(dadosDoRegistro.quantidade < 0){
-            console.log("Estoque menor que 0");
-            return null
+            throw new ErroPersonalizado("Estoque menor que 0", 403);
         }
 
         else{
@@ -85,9 +81,7 @@ class ProdutoService extends Service{
         );
 
         if(listaDeRegistroAtualizado[0] == 0){
-            return false;
-        } else{
-            return true;
+            throw new ErroPersonalizado("Erro na atualizacao do produto.", 400);        
         }
     }
 
@@ -95,7 +89,6 @@ class ProdutoService extends Service{
         const todosProdutos = await this.pegaTodosPorIdUsuario(usuario.id);
 
         const maiorEstoque = todosProdutos.sort((a, b) => b.quantidade - a.quantidade);
-        console.log(maiorEstoque);
 
         return maiorEstoque;
     }
