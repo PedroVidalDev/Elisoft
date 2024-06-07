@@ -44,6 +44,16 @@ window.onload = async () => {
         const botaoExcluir = document.createElement("button");
         botaoExcluir.className = "botao-acao";
         botaoExcluir.innerHTML = "Excluir";
+        botaoExcluir.addEventListener("click", async () => {
+            try{
+                await request(`produtos/${produto.id}`, "DELETE", headerAuth, null);
+                alert("Produto deletado com sucesso!");
+                window.location.href = "/pages/produto/produtos.html";
+            }
+            catch(erro){
+                alert("Falha ao deletar produto.")
+            }
+        })
 
         tdExcluir.appendChild(botaoExcluir);
 

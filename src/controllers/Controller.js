@@ -49,8 +49,9 @@ class Controller{
     async exclui(req, res, next){
         try {
             const { id } = req.params;
+            console.log(id)
 
-            await this.service.excluiRegistro(Number(id));
+            await this.service.excluiRegistro({id: Number(id)});
             return res.status(204);
         } catch (error) {
             next(error);
