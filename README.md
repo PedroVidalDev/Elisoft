@@ -70,8 +70,10 @@ Para atingir o objetivo do projeto irei utilizar tecnologias de frontend, backen
 - Todos os campos de produto, exceto descrição, devem estar preenchidos em sua criação.
 
 ## Variáveis de Ambiente
-É possível definir variáveis únicas para você, como por exemplo:
+Para rodar o projeto é necessário definir as variáveis de ambiente::
 - DB_USER = usuário do banco
 - DB_PASSWORD = senha do banco
 - DB_DATABASE = nome do banco
+- DB_HOST = endereço do banco (ex: localhost)
+- DB_DIALECT = tipo do banco (ex: mysql, postgres, sqlite)
 - CHAVE = chave para encriptar senhas e tokens
