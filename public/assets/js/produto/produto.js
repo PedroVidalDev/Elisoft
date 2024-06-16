@@ -1,5 +1,6 @@
 import request from "./../utils/requestHttp.js";
 import { headerAuth } from "./../utils/header.js";
+import { mostrarMensagem } from "../utils/mensagemAlerta.js";
 
 const botaoSair = document.querySelector("#sair-botao");
 botaoSair.addEventListener("click", () => {
@@ -45,14 +46,9 @@ window.onload = async () => {
         botaoExcluir.className = "botao-acao";
         botaoExcluir.innerHTML = "Excluir";
         botaoExcluir.addEventListener("click", async () => {
-            try{
-                await request(`produtos/${produto.id}`, "DELETE", headerAuth, null);
-                alert("Produto deletado com sucesso!");
-                window.location.href = "/pages/produto/produtos.html";
-            }
-            catch(erro){
-                alert("Falha ao deletar produto.")
-            }
+            await request(`produtos/${produto.id}`, "DELETE", headerAuth, null);
+            mostrarMensagem("Produto deletado com sucesso!");
+            tr.remove();            
         })
 
         tdExcluir.appendChild(botaoExcluir);

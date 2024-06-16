@@ -1,4 +1,5 @@
 import { headerAuth } from "./utils/header.js";
+import { mostrarMensagem } from "./utils/mensagemAlerta.js";
 import request from "./utils/requestHttp.js";
 
 const botaoSair = document.querySelector("#sair-botao");
@@ -43,9 +44,9 @@ botaoResetar.addEventListener("click", async () => {
     const reqData = await request("vendas/resetar", "POST", headerAuth, null);
     
     if(reqData != null){
-        alert(reqData.mensagem);
+        mostrarMensagem(reqData.mensagem);
         window.location.href = "/pages/dashboard.html";
     } else{
-        alert("Erro no reset de vendas e produtos.");
+        mostrarMensagem("Erro no reset de vendas e produtos.");
     }
 })

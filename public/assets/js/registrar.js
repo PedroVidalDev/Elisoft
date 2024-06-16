@@ -1,5 +1,6 @@
 import request from "./utils/requestHttp.js";
 import { header } from "./utils/header.js";
+import { mostrarMensagem } from "./utils/mensagemAlerta.js";
 
 const form = document.querySelector("#form");
 
@@ -10,7 +11,7 @@ form.addEventListener("submit", async (event) => {
     let dados = Object.fromEntries(formData);
     
     if(dados.senha != dados.confirmar){
-        alert("Senhas devem estar iguais!");
+        mostrarMensagem("Senhas devem estar iguais!");
         return;
     }
 
@@ -23,11 +24,11 @@ form.addEventListener("submit", async (event) => {
     let jsonDados = JSON.stringify(dadosLimpos);
 
     const reqData = await request("registrar", "POST", header, jsonDados);
-    
-    if(!reqData.status){    
+
+    if(reqData.status == 201){    
         window.location.href = "/";
     } else{
-        alert(reqData.mensagem);
+        mostrarMensagem(reqData.mensagem);
     }
 
 })

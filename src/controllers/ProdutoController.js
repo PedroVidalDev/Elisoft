@@ -31,6 +31,7 @@ class ProdutoController extends Controller{
             const foiAtualizado = await this.service.atualizaProduto(id, dadosAtualizados);
     
             return res.status(200).json({
+                status: 200,
                 mensagem: "Produto foi atualizado."
             });
         } 

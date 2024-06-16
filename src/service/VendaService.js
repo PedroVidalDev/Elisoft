@@ -54,6 +54,7 @@ class VendaService extends Service{
             );
 
             return {
+                status: 200,
                 mensagem: "Venda registrada com sucesso.", 
                 objeto: await this.criaRegistro({
                     usuario_id: usuarioEncontrado.id,

@@ -1,3 +1,4 @@
+import { mostrarMensagem } from "../utils/mensagemAlerta.js";
 import { headerAuth } from "./../utils/header.js";
 import request from "./../utils/requestHttp.js"
 
@@ -47,10 +48,9 @@ form.addEventListener("submit", async (event) => {
 
     const reqData = await request("vendas", "POST", headerAuth, jsonDados);
 
-    if(reqData != null){
-        alert(reqData.mensagem);
+    mostrarMensagem(reqData.mensagem);
+
+    if(reqData.status == 200){
         window.location.href = "/pages/venda/vendas.html";
-    } else{
-        alert("Erro na criacao da venda. Por favor verificar os dados e tentar denovo.");
-    }
+    } 
 })

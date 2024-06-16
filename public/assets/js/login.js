@@ -1,5 +1,6 @@
 import request from "./utils/requestHttp.js";
 import { header } from "./utils/header.js";
+import { mostrarMensagem } from "./utils/mensagemAlerta.js";
 
 const form = document.querySelector("#form");
 
@@ -15,10 +16,10 @@ form.addEventListener("submit", async (event) => {
 
     if(!reqData.status == 403 || reqData.status == null){
         localStorage.setItem("token", reqData.token);
-        alert(reqData.mensagem);
+        mostrarMensagem(reqData.mensagem);
         window.location.href = "/pages/dashboard.html";
     } else{
-        alert(reqData.mensagem);
+        mostrarMensagem(reqData.mensagem);
     }
 
 })

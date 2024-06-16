@@ -1,3 +1,4 @@
+import { mostrarMensagem } from "../utils/mensagemAlerta.js";
 import { header, headerAuth } from "./../utils/header.js";
 import request from "./../utils/requestHttp.js"
 
@@ -43,22 +44,20 @@ form.addEventListener("submit", async (event) => {
     if(produtoIdParam != null){
         const reqData = await request(`produtos/${produtoIdParam}`, "PUT", headerAuth, jsonDados);
 
-        if(reqData != null){
-            alert(reqData.mensagem);
+        mostrarMensagem(reqData.mensagem);
+
+        if(reqData.status = 200){
             window.location.href = "/pages/produto/produtos.html";
-        } else{
-            alert("Erro na edicao de produto. Verifique os campos.");
         }
     }
     
     else{
         const reqData = await request("produtos", "POST", headerAuth, jsonDados);
+        
+        mostrarMensagem(reqData.mensagem);
 
-        if(reqData != null){
-            alert(reqData.mensagem);
+        if(reqData.status == 201){
             window.location.href = "/pages/produto/produtos.html";
-        } else{
-            alert("Erro na insercao de produto. Verifique os campos.");
         }
     }
 })

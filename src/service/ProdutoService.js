@@ -34,43 +34,25 @@ class ProdutoService extends Service{
     }
 
     async verificarRegistroProduto(dadosDoRegistro, usuario){
-        const dadoExistente = await this.pegaRegistroPorNome(dadosDoRegistro.nome);
-        const usuarioEncontrado = await usuarioService.pegaUmRegistroPorId(usuario.id);
+        await this.validacaoProduto(dadosDoRegistro);
 
-        console.log(usuarioEncontrado)
-
-        if(usuarioEncontrado == null){
-            throw new ErroPersonalizado("Operacao nao foi autorizada.", 403)
-        }
-
-        if(dadoExistente != null){
-            throw new ErroPersonalizado("Produto ja existe.", 400)
-
-        }
-
-        if(dadosDoRegistro.preco < 0){
-            throw new ErroPersonalizado("Preco menos que 0", 403);
-        }
-
-        if(dadosDoRegistro.quantidade < 0){
-            throw new ErroPersonalizado("Estoque menor que 0", 403);
-        }
-
-        else{
-            return {
-                mensagem: "Produto criado com sucesso!", 
-                objeto: await this.criaRegistro({                    
-                    nome: dadosDoRegistro.nome,
-                    descricao: dadosDoRegistro.descricao,
-                    preco: dadosDoRegistro.preco,
-                    quantidade: dadosDoRegistro.quantidade,
-                    usuario_id: usuarioEncontrado.id
-                })};
-        } 
+        return {
+            status: 201,
+            mensagem: "Produto criado com sucesso!", 
+            objeto: await this.criaRegistro({                    
+                nome: dadosDoRegistro.nome,
+                descricao: dadosDoRegistro.descricao,
+                preco: dadosDoRegistro.preco,
+                quantidade: dadosDoRegistro.quantidade,
+                usuario_id: usuario.id
+            })};
+        
 
     }
 
     async atualizaProduto(id, dadosAtualizados){
+        await this.validacaoProduto(dadosAtualizados);
+
         const listaDeRegistroAtualizado = dataSource[this.nomeDoModel].update(
             dadosAtualizados, 
             {
@@ -91,6 +73,22 @@ class ProdutoService extends Service{
         const maiorEstoque = todosProdutos.sort((a, b) => b.quantidade - a.quantidade);
 
         return maiorEstoque;
+    }
+
+    async validacaoProduto(produto){
+        const dadoExistente = await this.pegaRegistroPorNome(produto.nome);
+
+        if(dadoExistente != null){
+            throw new ErroPersonalizado("Produto ja existe.", 400)
+        }
+
+        else if(produto.preco < 0){
+            throw new ErroPersonalizado("Preco menos que 0", 403);
+        }
+
+        else if(produto.quantidade < 0){
+            throw new ErroPersonalizado("Estoque menor que 0", 403);
+        }
     }
 }
 

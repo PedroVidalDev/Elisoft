@@ -22,7 +22,7 @@ class Service{
     }
     
     async excluiRegistro(query){
-        return dataSource[this.nomeDoModel].destroy({where : query});
+        return dataSource[this.nomeDoModel].destroy(query);
     }
 }
 
