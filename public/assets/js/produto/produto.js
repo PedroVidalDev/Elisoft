@@ -46,7 +46,7 @@ window.onload = async () => {
         botaoExcluir.className = "botao-acao";
         botaoExcluir.innerHTML = "Excluir";
         botaoExcluir.addEventListener("click", async () => {
-            await request(`produtos/${produto.id}`, "DELETE", headerAuth, null);
+            request(`produtos/${produto.id}`, "DELETE", headerAuth, null);
             mostrarMensagem("Produto deletado com sucesso!");
             tr.remove();            
         })
